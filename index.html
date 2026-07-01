@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alessandro Bazzani | Magia Web & Siti Straordinari</title>
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            /* Lo sfondo cambia colore dinamicamente durante lo scroll grazie al gradient legato alla pagina */
+            background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #090d16 50%),
+                        radial-gradient(circle at 0% 100%, #311042 0%, #090d16 70%);
+            background-attachment: fixed;
+        }
+
+        /* Navbar Futuritica */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            background: rgba(9, 13, 22, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            margin-left: 35px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Hero Section Imponente */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--accent-blue);
+            filter: blur(150px);
+            opacity: 0.2;
+            top: 25%;
+            z-index: -1;
+        }
+
+        .badge-premium {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #38bdf8;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            max-width: 900px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        /* Sezione Magia: "Faccio tutto io" */
+        .magic-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto 100px auto;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            transform: translateY(0);
+            transition: transform 0.4s;
+        }
+
+        .magic-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .magic-box h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .btn-magic {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-magic:hover {
+            box-shadow: 0 0 45px rgba(139, 92, 246, 0.7);
+            transform: scale(1.03);
+        }
+
+        /* Portfolio con Animazioni "Entrata da Destra/Sinistra" via Scroll */
+        .portfolio-section {
+            padding: 100px 8%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -1px;
+        }
+
+        .row-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 100px;
+            gap: 50px;
+        }
+
+        /* Inversione per l'effetto alternato */
+        .row-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .showcase-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 45px;
+            border-radius: 20px;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0; /* Gestito via JS, se JS è disattivato vedi sotto */
+        }
+
+        /* Effetti di scivolamento fluidi */
+        .slide-left {
+            transform: translateX(-100px);
+        }
+
+        .slide-right {
+            transform: translateX(100px);
+        }
+
+        /* Classe attivata all'entrata nello schermo */
+        .show-element {
+            opacity: 1 !important;
+            transform: translateX(0) !important;
+        }
+
+        .showcase-card:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .tag {
+            color: var(--accent-blue);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+        }
+
+        .showcase-card h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .showcase-card p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .btn-visit {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 4px;
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        .btn-visit:hover {
+            color: var(--accent-blue);
+            border-color: #fff;
+        }
+
+        /* Contatti Ultra-Puliti */
+        .contact-section {
+            padding: 120px 5%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.01);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .contact-section h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--accent-blue);
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: #475569;
+            font-size: 14px;
+            background: #05070b;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .row-item, .row-item:nth-child(even) {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .hero h1 { font-size: 42px; }
+            .showcase-card { padding: 30px; }
+            .slide-left, .slide-right { transform: translateY(50px) !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Alessandro Bazzani</div>
+        <div class="nav-links">
+            <a href="#lavori">Progetti Digitali</a>
+            <a href="#contatti">Contatti</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="badge-premium">✦ CREATORE DI ESPERIENZE DIGITALI</div>
+        <h1>Siti Web che Sembrano <span>Magia</span>, Generano Risultati e Corrono Veloci.</h1>
+        <p>Sono un freelance specializzato nello sviluppo di piattaforme moderne, fluide e ottimizzate al millisecondo. Nessun modello preimpostato, solo pura innovazione low-cost.</p>
+    </section>
+
+    <div class="magic-box">
+        <h3>Hai un'idea in mente ma zero tempo?</h3>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Non devi preoccuparti di codici, server o tecnicismi fastidiosi.</p>
+        <a href="tel:3335295659" class="btn-magic">Decidiamo insieme le tue idee &amp; faccio tutto io →</a>
+    </div>
+
+    <section class="portfolio-section" id="lavori">
+        <h2 class="section-title">Esperienze Live Sviluppate</h2>
+
+        <div class="row-item">
+            <div class="showcase-card slide-left">
+                <div class="tag">Food Experience</div>
+                <h3>Pizza &amp; Core</h3>
+                <p>Una piattaforma fluida progettata per la ristorazione moderna. Menu dinamico ad alte prestazioni, caricamento istantaneo ed esperienza utente totalmente immersiva.</p>
+                <a href="https://alebazza.github.io/pizze/" target="_blank" class="btn-visit">Esplora il codice live &nearr;</a>
+            </div>
+            <div style="flex: 0.8;"></div> </div>
+
+        <div class="row-item">
+            <div style="flex: 0.8;"></div>
+            <div class="showcase-card slide-right">
+                <div class="tag">Elegance &amp; Style</div>
+                <h3>Salone Parrucchiere</h3>
+                <p>Interfaccia premium per il mondo del benessere. Grafica minimale, pulita e un'architettura che valorizza i servizi e attira immediatamente nuovi clienti.</p>
+                <a href="https://alebazza.github.io/Parrucchiere-/" target="_blank" class="btn-visit">Esplora il codice live &nearr;</a>
+            </div>
+        </div>
+
+        <div class="row-item">
+            <div class="showcase-card slide-left">
+                <div class="tag">Gourmet Portal</div>
+                <h3>Gusto &amp; Co.</h3>
+                <p>Struttura ad impatto visivo totale. Transizioni pulite, gestione dei contenuti fluida e design studiato per la massima conversione dei visitatori.</p>
+                <a href="https://alebazza.github.io/gusto-e-co-/" target="_blank" class="btn-visit">Esplora il codice live &nearr;</a>
+            </div>
+            <div style="flex: 0.8;"></div>
+        </div>
+
+        <div class="row-item">
+            <div style="flex: 0.8;"></div>
+            <div class="showcase-card slide-right">
+                <div class="tag">Energy &amp; Motion</div>
+                <h3>Palestra Gioppino</h3>
+                <p>Layout dinamico ad altissimo impatto per il mondo del fitness. Progettato per trasmettere energia, massimizzare le iscrizioni e navigare senza rallentamenti.</p>
+                <a href="https://alebazza.github.io/Palestra-gioppino/" target="_blank" class="btn-visit">Esplora il codice live &nearr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contatti">
+        <h2>Diamo vita al tuo progetto</h2>
+        <p style="color: var(--text-muted);">Senza stress. Mi spieghi l'obiettivo e io lo trasformo in realtà.</p>
+        <div class="contact-grid">
+            <a href="tel:3335295659" class="contact-link">📞 333 5295659</a>
+            <a href="mailto:alebazza08@gmail.com" class="contact-link">✉️ alebazza08@gmail.com</a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Alessandro Bazzani. Soluzioni Web d'Impatto a Tariffe Low-Cost.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.showcase-card');
+            
+            const observerOptions = {
+                root: null,
+                threshold: 0.15, // L'animazione parte quando si vede il 15% della card
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show-element');
+                        observer.unobserve(entry.target); // Ferma l'osservazione una volta animato
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
