@@ -218,6 +218,16 @@
             background: rgba(37, 211, 102, 0.05);
         }
 
+        @media (max-width: 768px) {
+            .hero-premium h1 { font-size: 40px; letter-spacing: -1.5px; }
+            .hero-subtitle { font-size: 17px; }
+            .project-grid { grid-template-columns: 1fr; gap: 16px; }
+            .project-card { height: 440px !important; padding: 20px !important; transform: translateX(-30px); }
+            .footer-grid-links { flex-direction: column; gap: 15px; }
+            .section-title { font-size: 32px; }
+            .project-preview { height: 160px !important; margin-bottom: 15px !important; }
+        }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -255,17 +265,17 @@
             padding: 0 20px;
         }
 
-        /* Card ad Altissimo Contrasto e Visibilità su Sfondo Nero */
+        /* Card ad Altissimo Contrasto con Spazio per Anteprima */
         .project-card {
             background: #141419;
             border-radius: 18px;
-            height: 420px;
+            height: 490px; /* Alzata leggermente per contenere l'interfaccia */
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.09); /* Più evidente */
+            justify-content: space-between;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.09);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255,255,255,0.05);
             overflow: hidden;
             opacity: 0; 
@@ -279,10 +289,95 @@
             box-shadow: 0 20px 40px rgba(41, 151, 255, 0.1);
         }
 
+        /* NUOVO: Spazio Visivo Personalizzato (Mockup Interfaccia Mac Premium) */
+        .project-preview {
+            width: 100%;
+            height: 190px;
+            background: #09090d;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        /* Finta barra del browser con i tre pallini */
+        .preview-header {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 12px;
+        }
+        .preview-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+        }
+        .project-card:hover .preview-dot:nth-child(1) { background: #ff5f56; }
+        .project-card:hover .preview-dot:nth-child(2) { background: #ffbd2e; }
+        .project-card:hover .preview-dot:nth-child(3) { background: #27c93f; }
+
+        /* Struttura interna astratta per simulare un'interfaccia */
+        .preview-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+        }
+        .preview-line {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 3px;
+            width: 100%;
+        }
+        .preview-line.short { width: 60%; }
+        
+        /* Accenno di griglia o card interna simulata */
+        .preview-mock-grid {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+            height: 70px;
+        }
+        .preview-mock-block {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Effetti di luce dinamici personalizzati per progetto */
+        .glow-effect {
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.15;
+            bottom: -40px;
+            right: -40px;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .project-card:hover .glow-effect {
+            opacity: 0.35;
+            transform: scale(1.1);
+        }
+        
+        /* Variazioni Colore Glow dei singoli progetti */
+        .glow-pizza { background: #ff9500; }
+        .glow-salon { background: #ff2d55; }
+        .glow-gusto { background: #4cd964; }
+        .glow-gym { background: #5856d6; }
+
         .project-info { z-index: 2; position: relative; }
-        .project-category { color: var(--accent-apple); font-size: 11px; font-weight: 600; text-transform: uppercase; margin-bottom: 8px; display: block; letter-spacing: 0.5px; }
-        .project-info h3 { font-size: 24px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.5px; }
-        .project-info p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; line-height: 1.45; }
+        .project-category { color: var(--accent-apple); font-size: 11px; font-weight: 600; text-transform: uppercase; margin-bottom: 6px; display: block; letter-spacing: 0.5px; }
+        .project-info h3 { font-size: 22px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.5px; }
+        .project-info p { color: var(--text-secondary); font-size: 13.5px; margin-bottom: 16px; line-height: 1.45; }
         
         .btn-visit-premium {
             color: var(--text-primary);
@@ -313,7 +408,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
         
-        .step-num { font-size: 11px; font-weight: 700; color: #bf5af2; margin-bottom: 12px; } /* Colore viola originale ripristinato */
+        .step-num { font-size: 11px; font-weight: 700; color: #bf5af2; margin-bottom: 12px; }
         .process-step h3 { font-size: 19px; margin-bottom: 10px; }
         .process-step p { color: var(--text-secondary); font-size: 13.5px; line-height: 1.45; }
 
@@ -325,15 +420,6 @@
         .footer-link:hover { color: var(--accent-apple); }
 
         footer { padding: 35px; text-align: center; color: #475569; font-size: 12px; background: #000; }
-
-        @media (max-width: 768px) {
-            .hero-premium h1 { font-size: 40px; letter-spacing: -1.5px; }
-            .hero-subtitle { font-size: 17px; }
-            .project-grid { grid-template-columns: 1fr; gap: 16px; }
-            .project-card { height: 380px; padding: 22px; transform: translateX(-30px); }
-            .footer-grid-links { flex-direction: column; gap: 15px; }
-            .section-title { font-size: 32px; }
-        }
     </style>
 </head>
 <body>
@@ -368,12 +454,27 @@
             </div>
         </div>
     </section>
+
     <section id="progetti" class="portfolio-premium">
         <p class="section-tag">Showcase Selected</p>
         <h2 class="section-title">Esperienze Live Sviluppate</h2>
         
         <div class="project-grid">
+            
             <div class="project-card">
+                <div class="project-preview">
+                    <div class="preview-header">
+                        <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
+                    </div>
+                    <div class="preview-body">
+                        <div class="preview-line short"></div>
+                        <div class="preview-mock-grid">
+                            <div class="preview-mock-block"></div>
+                            <div class="preview-mock-block"></div>
+                        </div>
+                    </div>
+                    <div class="glow-effect glow-pizza"></div>
+                </div>
                 <div class="project-info">
                     <span class="project-category">Food Experience</span>
                     <h3>Pizza &amp; Core</h3>
@@ -383,6 +484,19 @@
             </div>
 
             <div class="project-card">
+                <div class="project-preview">
+                    <div class="preview-header">
+                        <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
+                    </div>
+                    <div class="preview-body">
+                        <div class="preview-line"></div>
+                        <div class="preview-line short"></div>
+                        <div class="preview-mock-grid">
+                            <div class="preview-mock-block"></div>
+                        </div>
+                    </div>
+                    <div class="glow-effect glow-salon"></div>
+                </div>
                 <div class="project-info">
                     <span class="project-category">Elegance &amp; Style</span>
                     <h3>Salone Parrucchiere</h3>
@@ -392,6 +506,20 @@
             </div>
 
             <div class="project-card">
+                <div class="project-preview">
+                    <div class="preview-header">
+                        <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
+                    </div>
+                    <div class="preview-body">
+                        <div class="preview-line short"></div>
+                        <div class="preview-mock-grid">
+                            <div class="preview-mock-block"></div>
+                            <div class="preview-mock-block"></div>
+                            <div class="preview-mock-block"></div>
+                        </div>
+                    </div>
+                    <div class="glow-effect glow-gusto"></div>
+                </div>
                 <div class="project-info">
                     <span class="project-category">Gourmet Portal</span>
                     <h3>Gusto &amp; Co.</h3>
@@ -401,6 +529,19 @@
             </div>
 
             <div class="project-card">
+                <div class="project-preview">
+                    <div class="preview-header">
+                        <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
+                    </div>
+                    <div class="preview-body">
+                        <div class="preview-line"></div>
+                        <div class="preview-mock-grid">
+                            <div class="preview-mock-block"></div>
+                            <div class="preview-mock-block"></div>
+                        </div>
+                    </div>
+                    <div class="glow-effect glow-gym"></div>
+                </div>
                 <div class="project-info">
                     <span class="project-category">Energy &amp; Motion</span>
                     <h3>Palestra Elite</h3>
@@ -408,6 +549,7 @@
                     <a href="https://alebazza.github.io/Palestra-gioppino/" target="_blank" class="btn-visit-premium">Esplora live &nearr;</a>
                 </div>
             </div>
+            
         </div>
     </section>
 
@@ -456,7 +598,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <script>
-        // Gestione Menu a comparsa dei canali di contatto
         function openContactChannels() {
             const container = document.getElementById('channels-container');
             const mainBtn = document.getElementById('main-magic-btn');
@@ -472,7 +613,6 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof gsap !== 'undefined') {
-                // Intro fluida elementi Hero ad apertura pagina
                 const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1.1 } });
                 tl.from('.main-nav', { y: -40, opacity: 0, duration: 0.8 })
                   .from('.announcement-badge', { y: 15, opacity: 0, duration: 0.6 }, '-=0.4')
@@ -483,7 +623,6 @@
                 if (typeof ScrollTrigger !== 'undefined') {
                     gsap.registerPlugin(ScrollTrigger);
                     
-                    // Comparsa Progetti: Scorrimento Fluido e Cinematico da SINISTRA a DESTRA
                     gsap.to('.project-card', {
                         scrollTrigger: {
                             trigger: '#progetti',
@@ -497,13 +636,12 @@
                         ease: 'power2.out'
                     });
 
-                    // Transizione Sfondo Graduale allo Scroll (Sfumatura verso Viola Notte Profondo)
                     gsap.to('.process-section', {
                         scrollTrigger: {
                             trigger: '.process-section',
                             start: 'top 75%',
                             end: 'top 25%',
-                            scrub: true // Segue il movimento preciso dello scroll del dito
+                            scrub: true
                         },
                         backgroundColor: '#161224',
                         ease: 'none'
