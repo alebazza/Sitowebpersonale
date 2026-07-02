@@ -1,489 +1,462 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alessandro Bazzani | Magia Web & Siti Straordinari</title>
+    <title>Alessandro Bazzani | Digital Architecture</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --bg-dark: #090d16;
-            --accent-blue: #3b82f6;
-            --accent-purple: #8b5cf6;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --bg-pure: #000000;
+            --bg-dark: #0b0b0f;
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --accent-apple: #2997ff;
+            --accent-gradient: linear-gradient(135deg, #e5c4ff 0%, #9ba3ff 50%, #61cbff 100%);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --card-border-glow: rgba(41, 151, 255, 0.15);
+            --glass-bg: rgba(11, 11, 15, 0.8);
+            --font-main: 'Inter', -apple-system, sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
+            font-family: var(--font-main);
+            -webkit-tap-highlight-color: transparent;
         }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+        html, body {
+            background-color: var(--bg-pure);
+            color: var(--text-primary);
             overflow-x: hidden;
-            line-height: 1.6;
-            background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #090d16 50%),
-                        radial-gradient(circle at 0% 100%, #311042 0%, #090d16 70%);
-            background-attachment: fixed;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Navbar Futuritica */
-        nav {
+        /* Navbar Sottile */
+        .main-nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 25px 8%;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(12px);
-            background: rgba(9, 13, 22, 0.7);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .logo {
-            font-size: 22px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--accent-apple); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
         }
 
         .nav-links a {
+            color: var(--text-secondary);
             text-decoration: none;
-            color: var(--text-muted);
-            margin-left: 35px;
+            font-size: 13px;
             font-weight: 500;
-            font-size: 14px;
-            transition: color 0.3s;
-            letter-spacing: 0.5px;
+            transition: color 0.2s;
         }
 
-        .nav-links a:hover {
-            color: var(--text-main);
+        .nav-links a:hover { color: var(--text-primary); }
+        
+        .nav-links a.btn-nav-cta {
+            background: var(--accent-apple);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 980px;
+            font-size: 12px;
         }
+        .nav-links a.btn-nav-cta:hover { background: #43a4ff; }
 
-        /* Hero Section Imponente */
-        .hero {
-            min-height: 100vh;
+        /* Hero */
+        .hero-premium {
+            min-height: 90vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 0 5%;
             position: relative;
+            padding: 100px 20px 40px 20px;
+            text-align: center;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--accent-blue);
-            filter: blur(150px);
-            opacity: 0.2;
-            top: 25%;
-            z-index: -1;
+        .hero-content { max-width: 850px; z-index: 2; }
+
+        .announcement-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            color: #bf5af2;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
         }
 
-        .badge-premium {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: #38bdf8;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 800;
-            letter-spacing: -2px;
+        .hero-premium h1 {
+            font-size: 68px;
+            font-weight: 700;
+            letter-spacing: -2.5px;
             line-height: 1.1;
-            margin-bottom: 25px;
-            max-width: 900px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
         }
 
-        .hero h1 span {
-            background: linear-gradient(to right, #60a5fa, #a78bfa);
+        .hero-premium h1 span {
+            background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
+        .hero-subtitle {
             font-size: 20px;
-            color: var(--text-muted);
-            max-width: 650px;
-            margin-bottom: 40px;
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto 35px auto;
             font-weight: 400;
+            line-height: 1.45;
         }
 
-        /* Sezione Magia con menu a comparsa incorporato */
-        .magic-box {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            padding: 40px;
-            max-width: 800px;
-            margin: 0 auto 100px auto;
-            text-align: center;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-            transform: translateY(0);
-            transition: transform 0.4s;
+        /* Scatola Contatti */
+        .magic-box-premium {
+            background: #111116;
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            max-width: 650px;
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .magic-box:hover {
-            transform: translateY(-5px);
-            border-color: rgba(139, 92, 246, 0.3);
+        .magic-box-premium h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
 
-        .magic-box h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .btn-magic {
+        .btn-magic-trigger {
             display: inline-block;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            background: linear-gradient(135deg, #0071e3 0%, #8b5cf6 100%);
             color: white;
-            padding: 18px 40px;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 18px;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
             text-decoration: none;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
-            transition: all 0.3s ease;
-            margin-top: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+            border: none;
             cursor: pointer;
         }
 
-        .btn-magic:hover {
-            box-shadow: 0 0 45px rgba(139, 92, 246, 0.7);
-            transform: scale(1.02);
+        .btn-magic-trigger:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.35);
         }
 
-        /* Griglia dei canali di contatto nascosta */
-        .contact-channels {
+        .contact-channels-grid {
             display: none;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 30px;
-            animation: fadeIn 0.4s ease forwards;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin-top: 25px;
+            animation: fadeInUp 0.3s ease-out forwards;
         }
 
-        .channel-card {
+        .channel-card-premium {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            padding: 14px;
+            border-radius: 10px;
             color: #fff;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
 
-        .channel-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
+        .channel-card-premium:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--accent-apple);
         }
 
-        .channel-card.whatsapp:hover {
+        .channel-card-premium.wa-color:hover {
             border-color: #25d366;
-            box-shadow: 0 0 15px rgba(37, 211, 102, 0.2);
+            background: rgba(37, 211, 102, 0.05);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Portfolio con Animazioni "Entrata da Destra/Sinistra" via Scroll */
-        .portfolio-section {
-            padding: 100px 8%;
-            max-width: 1300px;
-            margin: 0 auto;
+        /* Sezione Portfolio Visibile */
+        .portfolio-premium {
+            padding: 100px 0;
+            background: var(--bg-dark);
+        }
+
+        .section-tag {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            text-align: center;
         }
 
         .section-title {
             font-size: 42px;
-            font-weight: 800;
+            font-weight: 700;
+            letter-spacing: -1.2px;
+            margin-bottom: 45px;
             text-align: center;
-            margin-bottom: 80px;
-            letter-spacing: -1px;
         }
 
-        .row-item {
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Card ad Altissimo Contrasto e Visibilità su Sfondo Nero */
+        .project-card {
+            background: #141419;
+            border-radius: 18px;
+            height: 420px;
+            position: relative;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 100px;
-            gap: 50px;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.09); /* Più evidente */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255,255,255,0.05);
+            overflow: hidden;
+            opacity: 0; 
+            transform: translateX(-50px);
+            will-change: transform, opacity;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
-        .row-item:nth-child(even) {
-            flex-direction: row-reverse;
+        .project-card:hover {
+            border-color: rgba(41, 151, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(41, 151, 255, 0.1);
         }
 
-        .showcase-card {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 45px;
-            border-radius: 20px;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            opacity: 0;
-        }
-
-        .slide-left {
-            transform: translateX(-100px);
-        }
-
-        .slide-right {
-            transform: translateX(100px);
-        }
-
-        .show-element {
-            opacity: 1 !important;
-            transform: translateX(0) !important;
-        }
-
-        .showcase-card:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(59, 130, 246, 0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .tag {
-            color: var(--accent-blue);
+        .project-info { z-index: 2; position: relative; }
+        .project-category { color: var(--accent-apple); font-size: 11px; font-weight: 600; text-transform: uppercase; margin-bottom: 8px; display: block; letter-spacing: 0.5px; }
+        .project-info h3 { font-size: 24px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .project-info p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; line-height: 1.45; }
+        
+        .btn-visit-premium {
+            color: var(--text-primary);
+            text-decoration: none;
             font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
+            font-weight: 500;
+            border-bottom: 1px solid var(--text-secondary);
+            padding-bottom: 3px;
+            transition: all 0.2s;
         }
+        .btn-visit-premium:hover { border-color: var(--accent-apple); color: var(--accent-apple); }
 
-        .showcase-card h3 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            font-weight: 700;
+        /* Sezione Metodo Costante */
+        .process-section { 
+            padding: 110px 20px; 
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
         }
-
-        .showcase-card p {
-            color: var(--text-muted);
-            font-size: 16px;
-            margin-bottom: 30px;
+        
+        .process-container { max-width: 1050px; margin: 0 auto; }
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; margin-top: 45px; }
+        
+        .process-step { 
+            background: #111116; 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            padding: 30px; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
+        
+        .step-num { font-size: 11px; font-weight: 700; color: #bf5af2; margin-bottom: 12px; } /* Colore viola originale ripristinato */
+        .process-step h3 { font-size: 19px; margin-bottom: 10px; }
+        .process-step p { color: var(--text-secondary); font-size: 13.5px; line-height: 1.45; }
 
-        .btn-visit {
-            display: inline-block;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            border-bottom: 2px solid var(--accent-blue);
-            padding-bottom: 4px;
-            transition: border-color 0.3s, color 0.3s;
-        }
+        /* Contatti & Footer */
+        .footer-contacts { padding: 90px 20px; text-align: center; border-top: 1px solid var(--glass-border); }
+        .footer-contacts h2 { font-size: 36px; margin-bottom: 25px; letter-spacing: -1px; }
+        .footer-grid-links { display: flex; justify-content: center; gap: 35px; }
+        .footer-link { font-size: 18px; color: #fff; text-decoration: none; font-weight: 600; transition: color 0.2s; }
+        .footer-link:hover { color: var(--accent-apple); }
 
-        .btn-visit:hover {
-            color: var(--accent-blue);
-            border-color: #fff;
-        }
+        footer { padding: 35px; text-align: center; color: #475569; font-size: 12px; background: #000; }
 
-        /* Contatti Ultra-Puliti */
-        .contact-section {
-            padding: 120px 5%;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.01);
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .contact-section h2 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .contact-grid {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            font-size: 24px;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-link:hover {
-            color: var(--accent-blue);
-        }
-
-        footer {
-            padding: 40px;
-            text-align: center;
-            color: #475569;
-            font-size: 14px;
-            background: #05070b;
-        }
-
-        @media (max-width: 968px) {
-            .row-item, .row-item:nth-child(even) {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .hero h1 { font-size: 42px; }
-            .showcase-card { padding: 30px; }
-            .slide-left, .slide-right { transform: translateY(50px) !important; }
+        @media (max-width: 768px) {
+            .hero-premium h1 { font-size: 40px; letter-spacing: -1.5px; }
+            .hero-subtitle { font-size: 17px; }
+            .project-grid { grid-template-columns: 1fr; gap: 16px; }
+            .project-card { height: 380px; padding: 22px; transform: translateX(-30px); }
+            .footer-grid-links { flex-direction: column; gap: 15px; }
+            .section-title { font-size: 32px; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">Alessandro Bazzani</div>
-        <div class="nav-links">
-            <a href="#lavori">Progetti Digitali</a>
-            <a href="#contatti">Contatti</a>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="#" class="logo">Alessandro Bazzani<span>.</span></a>
+            <div class="nav-links">
+                <a href="#progetti">Progetti</a>
+                <a href="#processo">Metodo</a>
+                <a href="#contatti" class="btn-nav-cta">Contattami</a>
+            </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="badge-premium">✦ CREATORE DI ESPERIENZE DIGITALI</div>
-        <h1>Siti Web che Sembrano <span>Magia</span>, Generano Risultati e Corrono Veloci.</h1>
-        <p>Sono un freelance specializzato nello sviluppo di piattaforme moderne, fluide e ottimizzate al millisecondo. Nessun modello preimpostato, solo pura innovazione low-cost.</p>
-    </section>
-
-    <div class="magic-box">
-        <h3>Hai un'idea in mente ma zero tempo?</h3>
-        <p style="color: var(--text-muted); margin-bottom: 20px;">Non devi preoccuparti di codici, server o tecnicismi fastidiosi.</p>
-        
-        <div id="main-magic-btn" class="btn-magic" onclick="openContactChannels()">Decidiamo insieme le tue idee &amp; faccio tutto io ↓</div>
-        
-        <div id="channels-container" class="contact-channels">
-            <a href="tel:3335295659" class="channel-card">📞 Chiamata Diretta</a>
-            <a href="https://wa.me/393335295659" target="_blank" class="channel-card whatsapp">💬 WhatsApp</a>
-            <a href="mailto:alebazza08@gmail.com" class="channel-card">✉️ Invia un'Email</a>
-        </div>
-    </div>
-
-    <section class="portfolio-section" id="lavori">
-        <h2 class="section-title">Esperienze Live Sviluppate</h2>
-
-        <div class="row-item">
-            <div class="showcase-card slide-left">
-                <div class="tag">Food Experience</div>
-                <h3>Pizza &amp; Core</h3>
-                <p>Una piattaforma fluida progettata per la ristorazione moderna. Menu dinamico ad alte prestazioni, caricamento istantaneo ed esperienza utente totalmente immersiva.</p>
-                <a href="https://alebazza.github.io/pizze/" target="_blank" class="btn-visit">Esplora il codice live &nearr;</a>
-            </div>
-            <div style="flex: 0.8;"></div> </div>
-
-        <div class="row-item">
-            <div style="flex: 0.8;"></div>
-            <div class="showcase-card slide-right">
-                <div class="tag">Elegance &amp; Style</div>
-                <h3>Salone Parrucchiere</h3>
-                <p>Interfaccia premium per il mondo del benessere. Grafica minimale, pulita e un'architettura che valorizza i servizi e attira immediatamente nuovi clienti.</p>
-                <a href="https://alebazza.github.io/Parrucchiere-/" target="_blank" class="btn-visit">Esplora il codice live &nearr;</a>
-            </div>
-        </div>
-
-        <div class="row-item">
-            <div class="showcase-card slide-left">
-                <div class="tag">Gourmet Portal</div>
-                <h3>Gusto &amp; Co.</h3>
-                <p>Struttura ad impatto visivo totale. Transizioni pulite, gestione dei contenuti fluida e design studiato per la massima conversione dei visitatori.</p>
-                <a href="https://alebazza.github.io/gusto-e-co-/" target="_blank" class="btn-visit">Esplora il codice live &nearr;</a>
-            </div>
-            <div style="flex: 0.8;"></div>
-        </div>
-
-        <div class="row-item">
-            <div style="flex: 0.8;"></div>
-            <div class="showcase-card slide-right">
-                <div class="tag">Energy &amp; Motion</div>
-                <h3>Palestra Elite</h3>
-                <p>Layout dinamico ad altissimo impatto per il mondo del fitness. Progettato per trasmettere energia, massimizzare le iscrizioni e navigare senza rallentamenti.</p>
-                <a href="https://alebazza.github.io/Palestra-gioppino/" target="_blank" class="btn-visit">Esplora il codice live &nearr;</a>
-            </div>
-        </div>
-    </section>
-
-    <section style="padding: 100px 8%; max-width: 1300px; margin: 0 auto;">
-        <h2 style="font-size: 42px; font-weight: 800; text-align: center; margin-bottom: 60px; letter-spacing: -1px;">
-            Il Tuo Progetto Online <span>In 4 Semplici Passi</span>
-        </h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+    <section class="hero-premium">
+        <div class="hero-content">
+            <div class="announcement-badge">✦ Freelance Developer Pro</div>
+            <h1 class="reveal-text">Siti Web che Sembrano <span>Magia</span>, Generano Risultati.</h1>
+            <p class="hero-subtitle">Sono un freelance specialist in sviluppo d'élite moderno, fluido e ottimizzato al millisecondo. Nessun modello preimpostato, solo pura innovazione digitale.</p>
             
-            <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 16px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='rgba(59, 130, 246, 0.3)'" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.05)'">
-                <div style="font-size: 14px; font-weight: 800; color: var(--accent-blue); margin-bottom: 10px;">FASE 01</div>
-                <h3 style="font-size: 22px; margin-bottom: 15px; color: #fff;">Esigenze &amp; Idee</h3>
-                <p style="color: var(--text-muted); font-size: 15px;">Mi racconti la tua attività e cosa ti serve. Definiamo insieme gli obiettivi e pianifichiamo la struttura perfetta per te.</p>
+            <div class="magic-box-premium">
+                <h3>Hai un'idea in mente ma zero tempo?</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 18px; font-size: 14px;">Non devi preoccuparti di codici, server o tecnicismi fastidiosi.</p>
+                <button id="main-magic-btn" class="btn-magic-trigger" onclick="openContactChannels()">Decidiamo insieme le tue idee &amp; faccio tutto io ↓</button>
+                
+                <div id="channels-container" class="contact-channels-grid">
+                    <a href="tel:3335295659" class="channel-card-premium">📞 Chiamata</a>
+                    <a href="https://wa.me/393335295659" target="_blank" class="channel-card-premium wa-color">💬 WhatsApp</a>
+                    <a href="mailto:alebazza08@gmail.com" class="channel-card-premium">✉️ Email</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="progetti" class="portfolio-premium">
+        <p class="section-tag">Showcase Selected</p>
+        <h2 class="section-title">Esperienze Live Sviluppate</h2>
+        
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-info">
+                    <span class="project-category">Food Experience</span>
+                    <h3>Pizza &amp; Core</h3>
+                    <p>Menu dinamico ad alte prestazioni, caricamento istantaneo ed esperienza utente totalmente immersiva.</p>
+                    <a href="https://alebazza.github.io/pizze/" target="_blank" class="btn-visit-premium">Esplora live &nearr;</a>
+                </div>
             </div>
 
-            <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 16px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='rgba(139, 92, 246, 0.3)'" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.05)'">
-                <div style="font-size: 14px; font-weight: 800; color: var(--accent-purple); margin-bottom: 10px;">FASE 02</div>
-                <h3 style="font-size: 22px; margin-bottom: 15px; color: #fff;">Preventivo Fisso</h3>
-                <p style="color: var(--text-muted); font-size: 15px;">Ricevi una proposta chiara, trasparente e low-cost. Sai fin da subito l'investimento totale prima ancora di iniziare.</p>
+            <div class="project-card">
+                <div class="project-info">
+                    <span class="project-category">Elegance &amp; Style</span>
+                    <h3>Salone Parrucchiere</h3>
+                    <p>Grafica minimale, pulita e un'architettura che valorizza i servizi e attira immediatamente clienti.</p>
+                    <a href="https://alebazza.github.io/Parrucchiere-/" target="_blank" class="btn-visit-premium">Esplora live &nearr;</a>
+                </div>
             </div>
 
-            <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 16px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='rgba(59, 130, 246, 0.3)'" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.05)'">
-                <div style="font-size: 14px; font-weight: 800; color: var(--accent-blue); margin-bottom: 10px;">FASE 03</div>
-                <h3 style="font-size: 22px; margin-bottom: 15px; color: #fff;">Faccio Tutto Io</h3>
-                <p style="color: var(--text-muted); font-size: 15px;">Costruisco la tua piattaforma curando design, ottimizzazione mobile e dettagli. Tu pensi alla tua attività, io mi occupo di tutto il codice.</p>
+            <div class="project-card">
+                <div class="project-info">
+                    <span class="project-category">Gourmet Portal</span>
+                    <h3>Gusto &amp; Co.</h3>
+                    <p>Transizioni pulite, gestione dei contenuti fluida e design studiato per la massima conversione.</p>
+                    <a href="https://alebazza.github.io/gusto-e-co-/" target="_blank" class="btn-visit-premium">Esplora live &nearr;</a>
+                </div>
             </div>
 
-            <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 16px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='rgba(139, 92, 246, 0.3)'" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.05)'">
-                <div style="font-size: 14px; font-weight: 800; color: var(--accent-purple); margin-bottom: 10px;">FASE 04</div>
-                <h3 style="font-size: 22px; margin-bottom: 15px; color: #fff;">Lancio Online</h3>
-                <p style="color: var(--text-muted); font-size: 15px;">In tempo record il sito è già online su dominio personale. La tua presenza su internet diventa ufficiale e pronta ad attirare nuovi clienti.</p>
+            <div class="project-card">
+                <div class="project-info">
+                    <span class="project-category">Energy &amp; Motion</span>
+                    <h3>Palestra Elite</h3>
+                    <p>Layout dinamico ad altissimo impatto per il mondo del fitness. Navigazione fulminea senza rallentamenti.</p>
+                    <a href="https://alebazza.github.io/Palestra-gioppino/" target="_blank" class="btn-visit-premium">Esplora live &nearr;</a>
+                </div>
             </div>
-
         </div>
     </section>
 
-    <section class="contact-section" id="contatti">
+    <section class="process-section" id="processo" style="transition: background-color 1.2s ease;">
+        <div class="process-container">
+            <p class="section-tag">Workflow</p>
+            <h2 class="section-title" style="text-align:left; margin-bottom: 40px;">Il Tuo Progetto Online In 4 Passi</h2>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-num">FASE 01</div>
+                    <h3>Esigenze &amp; Idee</h3>
+                    <p>Mi racconti la tua attività e cosa ti serve. Definiamo gli obiettivi e pianifichiamo la struttura perfetta.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">FASE 02</div>
+                    <h3>Preventivo Fisso</h3>
+                    <p>Ricevi una proposta chiara, trasparente e low-cost. Sai fin da subito l'investimento complessivo.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">FASE 03</div>
+                    <h3>Faccio Tutto Io</h3>
+                    <p>Costruisco la tua piattaforma curando design e ottimizzazione mobile. Io penso a scrivere il codice.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">FASE 04</div>
+                    <h3>Lancio Online</h3>
+                    <p>In tempo record il sito va online sul tuo dominio. La tua presenza web diventa ufficiale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer-contacts" id="contatti">
         <h2>Diamo vita al tuo progetto</h2>
-        <p style="color: var(--text-muted);">Senza stress. Mi spieghi l'obiettivo e io lo trasformo in realtà.</p>
-        <div class="contact-grid">
-            <a href="tel:3335295659" class="contact-link">📞 333 5295659</a>
-            <a href="mailto:alebazza08@gmail.com" class="contact-link">✉️ alebazza08@gmail.com</a>
+        <div class="footer-grid-links">
+            <a href="tel:3335295659" class="footer-link">📞 333 5295659</a>
+            <a href="mailto:alebazza08@gmail.com" class="footer-link">✉️ alebazza08@gmail.com</a>
         </div>
     </section>
 
     <footer>
-        &copy; 2026 Alessandro Bazzani. Soluzioni Web d'Impatto a Tariffe Low-Cost.
+        &copy; 2026 Alessandro Bazzani. Soluzioni Web d'Impatto Professionali.
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
     <script>
-        // Funzione per mostrare i pulsanti di contatto WhatsApp, Chiamata e Mail
+        // Gestione Menu a comparsa dei canali di contatto
         function openContactChannels() {
             const container = document.getElementById('channels-container');
             const mainBtn = document.getElementById('main-magic-btn');
@@ -498,422 +471,45 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.showcase-card');
-            
-            const observerOptions = {
-                root: null,
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            };
+            if (typeof gsap !== 'undefined') {
+                // Intro fluida elementi Hero ad apertura pagina
+                const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1.1 } });
+                tl.from('.main-nav', { y: -40, opacity: 0, duration: 0.8 })
+                  .from('.announcement-badge', { y: 15, opacity: 0, duration: 0.6 }, '-=0.4')
+                  .from('.reveal-text', { y: 30, opacity: 0, letterSpacing: '-3px', duration: 1.2 }, '-=0.5')
+                  .from('.hero-subtitle', { y: 15, opacity: 0, duration: 0.8 }, '-=0.7')
+                  .from('.magic-box-premium', { y: 20, opacity: 0, duration: 0.8 }, '-=0.7');
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('show-element');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+                if (typeof ScrollTrigger !== 'undefined') {
+                    gsap.registerPlugin(ScrollTrigger);
+                    
+                    // Comparsa Progetti: Scorrimento Fluido e Cinematico da SINISTRA a DESTRA
+                    gsap.to('.project-card', {
+                        scrollTrigger: {
+                            trigger: '#progetti',
+                            start: 'top 80%',
+                            toggleActions: 'play none none none'
+                        },
+                        x: 0,
+                        opacity: 1,
+                        stagger: 0.15,
+                        duration: 1.1,
+                        ease: 'power2.out'
+                    });
 
-            cards.forEach(card => {
-                observer.observe(card);
-            });
-        });
-    </script>
-</body>
-</html>
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 25px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(12px);
-            background: rgba(9, 13, 22, 0.7);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-muted);
-            margin-left: 35px;
-            font-weight: 500;
-            font-size: 14px;
-            transition: color 0.3s;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-main);
-        }
-
-        /* Hero Section Imponente */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 5%;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--accent-blue);
-            filter: blur(150px);
-            opacity: 0.2;
-            top: 25%;
-            z-index: -1;
-        }
-
-        .badge-premium {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: #38bdf8;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 800;
-            letter-spacing: -2px;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            max-width: 900px;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(to right, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: var(--text-muted);
-            max-width: 650px;
-            margin-bottom: 40px;
-            font-weight: 400;
-        }
-
-        /* Sezione Magia: "Faccio tutto io" */
-        .magic-box {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            padding: 40px;
-            max-width: 800px;
-            margin: 0 auto 100px auto;
-            text-align: center;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-            transform: translateY(0);
-            transition: transform 0.4s;
-        }
-
-        .magic-box:hover {
-            transform: translateY(-5px);
-            border-color: rgba(139, 92, 246, 0.3);
-        }
-
-        .magic-box h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .btn-magic {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 18px;
-            text-decoration: none;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
-            transition: all 0.3s ease;
-            margin-top: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-magic:hover {
-            box-shadow: 0 0 45px rgba(139, 92, 246, 0.7);
-            transform: scale(1.03);
-        }
-
-        /* Portfolio con Animazioni "Entrata da Destra/Sinistra" via Scroll */
-        .portfolio-section {
-            padding: 100px 8%;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 42px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 80px;
-            letter-spacing: -1px;
-        }
-
-        .row-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 100px;
-            gap: 50px;
-        }
-
-        /* Inversione per l'effetto alternato */
-        .row-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .showcase-card {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 45px;
-            border-radius: 20px;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            opacity: 0; /* Gestito via JS, se JS è disattivato vedi sotto */
-        }
-
-        /* Effetti di scivolamento fluidi */
-        .slide-left {
-            transform: translateX(-100px);
-        }
-
-        .slide-right {
-            transform: translateX(100px);
-        }
-
-        /* Classe attivata all'entrata nello schermo */
-        .show-element {
-            opacity: 1 !important;
-            transform: translateX(0) !important;
-        }
-
-        .showcase-card:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(59, 130, 246, 0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .tag {
-            color: var(--accent-blue);
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
-        }
-
-        .showcase-card h3 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .showcase-card p {
-            color: var(--text-muted);
-            font-size: 16px;
-            margin-bottom: 30px;
-        }
-
-        .btn-visit {
-            display: inline-block;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            border-bottom: 2px solid var(--accent-blue);
-            padding-bottom: 4px;
-            transition: border-color 0.3s, color 0.3s;
-        }
-
-        .btn-visit:hover {
-            color: var(--accent-blue);
-            border-color: #fff;
-        }
-
-        /* Contatti Ultra-Puliti */
-        .contact-section {
-            padding: 120px 5%;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.01);
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .contact-section h2 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .contact-grid {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            font-size: 24px;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-link:hover {
-            color: var(--accent-blue);
-        }
-
-        footer {
-            padding: 40px;
-            text-align: center;
-            color: #475569;
-            font-size: 14px;
-            background: #05070b;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .row-item, .row-item:nth-child(even) {
-                flex-direction: column;
-                gap: 30px;
+                    // Transizione Sfondo Graduale allo Scroll (Sfumatura verso Viola Notte Profondo)
+                    gsap.to('.process-section', {
+                        scrollTrigger: {
+                            trigger: '.process-section',
+                            start: 'top 75%',
+                            end: 'top 25%',
+                            scrub: true // Segue il movimento preciso dello scroll del dito
+                        },
+                        backgroundColor: '#161224',
+                        ease: 'none'
+                    });
+                }
             }
-            .hero h1 { font-size: 42px; }
-            .showcase-card { padding: 30px; }
-            .slide-left, .slide-right { transform: translateY(50px) !important; }
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <div class="logo">Alessandro Bazzani</div>
-        <div class="nav-links">
-            <a href="#lavori">Progetti Digitali</a>
-            <a href="#contatti">Contatti</a>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="badge-premium">✦ CREATORE DI ESPERIENZE DIGITALI</div>
-        <h1>Siti Web che Sembrano <span>Magia</span>, Generano Risultati e Corrono Veloci.</h1>
-        <p>Sono un freelance specializzato nello sviluppo di piattaforme moderne, fluide e ottimizzate al millisecondo. Nessun modello preimpostato, solo pura innovazione low-cost.</p>
-    </section>
-
-    <div class="magic-box">
-        <h3>Hai un'idea in mente ma zero tempo?</h3>
-        <p style="color: var(--text-muted); margin-bottom: 20px;">Non devi preoccuparti di codici, server o tecnicismi fastidiosi.</p>
-        <a href="tel:3335295659" class="btn-magic">Decidiamo insieme le tue idee &amp; faccio tutto io →</a>
-    </div>
-
-    <section class="portfolio-section" id="lavori">
-        <h2 class="section-title">Esperienze Live Sviluppate</h2>
-
-        <div class="row-item">
-            <div class="showcase-card slide-left">
-                <div class="tag">Food Experience</div>
-                <h3>Pizza &amp; Core</h3>
-                <p>Una piattaforma fluida progettata per la ristorazione moderna. Menu dinamico ad alte prestazioni, caricamento istantaneo ed esperienza utente totalmente immersiva.</p>
-                <a href="https://alebazza.github.io/pizze/" target="_blank" class="btn-visit">Esplora il codice live &nearr;</a>
-            </div>
-            <div style="flex: 0.8;"></div> </div>
-
-        <div class="row-item">
-            <div style="flex: 0.8;"></div>
-            <div class="showcase-card slide-right">
-                <div class="tag">Elegance &amp; Style</div>
-                <h3>Salone Parrucchiere</h3>
-                <p>Interfaccia premium per il mondo del benessere. Grafica minimale, pulita e un'architettura che valorizza i servizi e attira immediatamente nuovi clienti.</p>
-                <a href="https://alebazza.github.io/Parrucchiere-/" target="_blank" class="btn-visit">Esplora il codice live &nearr;</a>
-            </div>
-        </div>
-
-        <div class="row-item">
-            <div class="showcase-card slide-left">
-                <div class="tag">Gourmet Portal</div>
-                <h3>Gusto &amp; Co.</h3>
-                <p>Struttura ad impatto visivo totale. Transizioni pulite, gestione dei contenuti fluida e design studiato per la massima conversione dei visitatori.</p>
-                <a href="https://alebazza.github.io/gusto-e-co-/" target="_blank" class="btn-visit">Esplora il codice live &nearr;</a>
-            </div>
-            <div style="flex: 0.8;"></div>
-        </div>
-
-        <div class="row-item">
-            <div style="flex: 0.8;"></div>
-            <div class="showcase-card slide-right">
-                <div class="tag">Energy &amp; Motion</div>
-                <h3>Palestra Gioppino</h3>
-                <p>Layout dinamico ad altissimo impatto per il mondo del fitness. Progettato per trasmettere energia, massimizzare le iscrizioni e navigare senza rallentamenti.</p>
-                <a href="https://alebazza.github.io/Palestra-gioppino/" target="_blank" class="btn-visit">Esplora il codice live &nearr;</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-section" id="contatti">
-        <h2>Diamo vita al tuo progetto</h2>
-        <p style="color: var(--text-muted);">Senza stress. Mi spieghi l'obiettivo e io lo trasformo in realtà.</p>
-        <div class="contact-grid">
-            <a href="tel:3335295659" class="contact-link">📞 333 5295659</a>
-            <a href="mailto:alebazza08@gmail.com" class="contact-link">✉️ alebazza08@gmail.com</a>
-        </div>
-    </section>
-
-    <footer>
-        &copy; 2026 Alessandro Bazzani. Soluzioni Web d'Impatto a Tariffe Low-Cost.
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.showcase-card');
-            
-            const observerOptions = {
-                root: null,
-                threshold: 0.15, // L'animazione parte quando si vede il 15% della card
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('show-element');
-                        observer.unobserve(entry.target); // Ferma l'osservazione una volta animato
-                    }
-                });
-            }, observerOptions);
-
-            cards.forEach(card => {
-                observer.observe(card);
-            });
         });
     </script>
 </body>
