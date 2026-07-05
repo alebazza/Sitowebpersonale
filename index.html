@@ -218,24 +218,22 @@
             background: rgba(37, 211, 102, 0.05);
         }
 
-        @media (max-width: 768px) {
-            .hero-premium h1 { font-size: 40px; letter-spacing: -1.5px; }
-            .hero-subtitle { font-size: 17px; }
-            .project-grid { grid-template-columns: 1fr; gap: 16px; }
-            .project-card { height: 440px !important; padding: 20px !important; transform: translateX(-30px); }
-            .footer-grid-links { flex-direction: column; gap: 15px; }
-            .section-title { font-size: 32px; }
-            .project-preview { height: 160px !important; margin-bottom: 15px !important; }
+        /* Animazioni Scroll (Stile Aether) */
+        .reveal-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform, opacity;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .reveal-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Sezione Portfolio Visibile */
         .portfolio-premium {
-            padding: 100px 0;
+            padding: 100px 0 50px 0;
             background: var(--bg-dark);
         }
 
@@ -265,11 +263,11 @@
             padding: 0 20px;
         }
 
-        /* Card ad Altissimo Contrasto con Spazio per Anteprima */
+        /* Card Progetto */
         .project-card {
             background: #141419;
             border-radius: 18px;
-            height: 490px; /* Alzata leggermente per contenere l'interfaccia */
+            height: 490px; 
             position: relative;
             display: flex;
             flex-direction: column;
@@ -278,9 +276,6 @@
             border: 1px solid rgba(255, 255, 255, 0.09);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255,255,255,0.05);
             overflow: hidden;
-            opacity: 0; 
-            transform: translateX(-50px);
-            will-change: transform, opacity;
             transition: border-color 0.3s, box-shadow 0.3s;
         }
 
@@ -289,7 +284,7 @@
             box-shadow: 0 20px 40px rgba(41, 151, 255, 0.1);
         }
 
-        /* NUOVO: Spazio Visivo Personalizzato (Mockup Interfaccia Mac Premium) */
+        /* Anteprima Mockup */
         .project-preview {
             width: 100%;
             height: 190px;
@@ -304,7 +299,6 @@
             box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
         }
 
-        /* Finta barra del browser con i tre pallini */
         .preview-header {
             display: flex;
             gap: 5px;
@@ -320,7 +314,6 @@
         .project-card:hover .preview-dot:nth-child(2) { background: #ffbd2e; }
         .project-card:hover .preview-dot:nth-child(3) { background: #27c93f; }
 
-        /* Struttura interna astratta per simulare un'interfaccia */
         .preview-body {
             flex: 1;
             display: flex;
@@ -336,7 +329,6 @@
         }
         .preview-line.short { width: 60%; }
         
-        /* Accenno di griglia o card interna simulata */
         .preview-mock-grid {
             display: flex;
             gap: 8px;
@@ -351,7 +343,7 @@
             position: relative;
         }
 
-        /* Effetti di luce dinamici personalizzati per progetto */
+        /* Glow Effects */
         .glow-effect {
             position: absolute;
             width: 130px;
@@ -368,11 +360,11 @@
             transform: scale(1.1);
         }
         
-        /* Variazioni Colore Glow dei singoli progetti */
         .glow-pizza { background: #ff9500; }
+        .glow-phone { background: #0071e3; }
+        .glow-gym { background: #5856d6; }
         .glow-salon { background: #ff2d55; }
         .glow-gusto { background: #4cd964; }
-        .glow-gym { background: #5856d6; }
 
         .project-info { z-index: 2; position: relative; }
         .project-category { color: var(--accent-apple); font-size: 11px; font-weight: 600; text-transform: uppercase; margin-bottom: 6px; display: block; letter-spacing: 0.5px; }
@@ -390,7 +382,54 @@
         }
         .btn-visit-premium:hover { border-color: var(--accent-apple); color: var(--accent-apple); }
 
-        /* Sezione Metodo Costante */
+        /* Espansione Portfolio */
+        .view-more-wrapper {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .extended-portfolio {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .extended-portfolio .project-grid {
+            padding: 20px 0 0 0;
+        }
+
+        .view-more-trigger-zone {
+            margin-top: 40px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .view-more-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .view-more-icon {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            transition: transform 0.4s ease, color 0.3s;
+        }
+
+        .view-more-trigger-zone:hover .view-more-text,
+        .view-more-trigger-zone:hover .view-more-icon {
+            color: var(--accent-apple);
+        }
+
+        /* Sezione Metodo */
         .process-section { 
             padding: 110px 20px; 
             background-color: var(--bg-dark);
@@ -420,6 +459,25 @@
         .footer-link:hover { color: var(--accent-apple); }
 
         footer { padding: 35px; text-align: center; color: #475569; font-size: 12px; background: #000; }
+
+        /* Responsive Media Query */
+        @media (max-width: 768px) {
+            .hero-premium h1 { font-size: 40px; letter-spacing: -1.5px; }
+            .hero-subtitle { font-size: 17px; }
+            /* Forza le card a restare 2 per riga riducendo il gap */
+            .project-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 10px; }
+            .project-card { height: 420px; padding: 15px; }
+            .project-preview { height: 130px; }
+            .project-info h3 { font-size: 16px; }
+            .project-info p { font-size: 11px; margin-bottom: 10px; }
+            .footer-grid-links { flex-direction: column; gap: 15px; }
+            .section-title { font-size: 32px; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -456,12 +514,12 @@
     </section>
 
     <section id="progetti" class="portfolio-premium">
-        <p class="section-tag">Showcase Selected</p>
-        <h2 class="section-title">Esperienze Live Sviluppate</h2>
+        <p class="section-tag reveal-scroll">Showcase Selected</p>
+        <h2 class="section-title reveal-scroll">Esperienze Live Sviluppate</h2>
         
         <div class="project-grid">
             
-            <div class="project-card">
+            <div class="project-card reveal-scroll">
                 <div class="project-preview">
                     <div class="preview-header">
                         <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
@@ -483,7 +541,7 @@
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card reveal-scroll">
                 <div class="project-preview">
                     <div class="preview-header">
                         <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
@@ -492,43 +550,21 @@
                         <div class="preview-line"></div>
                         <div class="preview-line short"></div>
                         <div class="preview-mock-grid">
+                            <div class="preview-mock-block" style="flex: 2;"></div>
                             <div class="preview-mock-block"></div>
                         </div>
                     </div>
-                    <div class="glow-effect glow-salon"></div>
+                    <div class="glow-effect glow-phone"></div>
                 </div>
                 <div class="project-info">
-                    <span class="project-category">Elegance &amp; Style</span>
-                    <h3>Salone Parrucchiere</h3>
-                    <p>Grafica minimale, pulita e un'architettura che valorizza i servizi e attira immediatamente clienti.</p>
-                    <a href="https://alebazza.github.io/Parrucchiere-/" target="_blank" class="btn-visit-premium">Esplora live &nearr;</a>
+                    <span class="project-category">Next-Gen Tech</span>
+                    <h3>AETHER X1 Ultra</h3>
+                    <p>Landing page d'élite con layout in titanio, micro-interazioni premium ed elevate performance responsive.</p>
+                    <a href="https://alebazza.github.io/Telefono/" target="_blank" class="btn-visit-premium">Esplora live &nearr;</a>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="project-preview">
-                    <div class="preview-header">
-                        <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
-                    </div>
-                    <div class="preview-body">
-                        <div class="preview-line short"></div>
-                        <div class="preview-mock-grid">
-                            <div class="preview-mock-block"></div>
-                            <div class="preview-mock-block"></div>
-                            <div class="preview-mock-block"></div>
-                        </div>
-                    </div>
-                    <div class="glow-effect glow-gusto"></div>
-                </div>
-                <div class="project-info">
-                    <span class="project-category">Gourmet Portal</span>
-                    <h3>Gusto &amp; Co.</h3>
-                    <p>Transizioni pulite, gestione dei contenuti fluida e design studiato per la massima conversione.</p>
-                    <a href="https://alebazza.github.io/gusto-e-co-/" target="_blank" class="btn-visit-premium">Esplora live &nearr;</a>
-                </div>
-            </div>
-
-            <div class="project-card">
+            <div class="project-card reveal-scroll">
                 <div class="project-preview">
                     <div class="preview-header">
                         <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
@@ -549,42 +585,103 @@
                     <a href="https://alebazza.github.io/Palestra-gioppino/" target="_blank" class="btn-visit-premium">Esplora live &nearr;</a>
                 </div>
             </div>
+
+            <div class="project-card reveal-scroll">
+                <div class="project-preview">
+                    <div class="preview-header">
+                        <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
+                    </div>
+                    <div class="preview-body">
+                        <div class="preview-line"></div>
+                        <div class="preview-line short"></div>
+                        <div class="preview-mock-grid">
+                            <div class="preview-mock-block"></div>
+                        </div>
+                    </div>
+                    <div class="glow-effect glow-salon"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category">Elegance &amp; Style</span>
+                    <h3>Salone Parrucchiere</h3>
+                    <p>Grafica minimale, pulita e un'architettura che valorizza i servizi e attira immediatamente clienti.</p>
+                    <a href="https://alebazza.github.io/Parrucchiere-/" target="_blank" class="btn-visit-premium">Esplora live &nearr;</a>
+                </div>
+            </div>
             
+        </div>
+
+        <div class="view-more-wrapper">
+            <div class="extended-portfolio" id="extended-portfolio-block">
+                <div class="project-grid">
+                    <div class="project-card hidden-card">
+                        <div class="project-preview">
+                            <div class="preview-header">
+                                <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
+                            </div>
+                            <div class="preview-body">
+                                <div class="preview-line short"></div>
+                                <div class="preview-mock-grid">
+                                    <div class="preview-mock-block"></div>
+                                    <div class="preview-mock-block"></div>
+                                    <div class="preview-mock-block"></div>
+                                </div>
+                            </div>
+                            <div class="glow-effect glow-gusto"></div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Gourmet Portal</span>
+                            <h3>Gusto &amp; Co.</h3>
+                            <p>Transizioni pulite, gestione dei contenuti fluida e design studiato per la massima conversione.</p>
+                            <a href="https://alebazza.github.io/gusto-e-co-/" target="_blank" class="btn-visit-premium">Esplora live &nearr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-more-trigger-zone reveal-scroll" onclick="togglePortfolioExpansion()">
+                <span class="view-more-text" id="view-more-text-label">View More</span>
+                <i class="fa-solid fa-chevron-down view-more-icon" id="view-more-icon-arrow"></i>
+            </div>
         </div>
     </section>
 
     <section class="process-section" id="processo" style="transition: background-color 1.2s ease;">
         <div class="process-container">
-            <p class="section-tag">Workflow</p>
-            <h2 class="section-title" style="text-align:left; margin-bottom: 40px;">Il Tuo Progetto Online In 4 Passi</h2>
+            <p class="section-tag reveal-scroll">Workflow</p>
+            <h2 class="section-title reveal-scroll" style="text-align:left; margin-bottom: 40px;">Il Tuo Progetto Online In 4 Passi</h2>
             <div class="process-grid">
-                <div class="process-step">
+                
+                <div class="process-step reveal-scroll">
                     <div class="step-num">FASE 01</div>
                     <h3>Esigenze &amp; Idee</h3>
                     <p>Mi racconti la tua attività e cosa ti serve. Definiamo gli obiettivi e pianifichiamo la struttura perfetta.</p>
                 </div>
-                <div class="process-step">
+                
+                <div class="process-step reveal-scroll">
                     <div class="step-num">FASE 02</div>
                     <h3>Preventivo Fisso</h3>
                     <p>Ricevi una proposta chiara, trasparente e low-cost. Sai fin da subito l'investimento complessivo.</p>
                 </div>
-                <div class="process-step">
+                
+                <div class="process-step reveal-scroll">
                     <div class="step-num">FASE 03</div>
                     <h3>Faccio Tutto Io</h3>
                     <p>Costruisco la tua piattaforma curando design e ottimizzazione mobile. Io penso a scrivere il codice.</p>
                 </div>
-                <div class="process-step">
+                
+                <div class="process-step reveal-scroll">
                     <div class="step-num">FASE 04</div>
                     <h3>Lancio Online</h3>
                     <p>In tempo record il sito va online sul tuo dominio. La tua presenza web diventa ufficiale.</p>
                 </div>
+                
             </div>
         </div>
     </section>
 
     <section class="footer-contacts" id="contatti">
-        <h2>Diamo vita al tuo progetto</h2>
-        <div class="footer-grid-links">
+        <h2 class="reveal-scroll">Diamo vita al tuo progetto</h2>
+        <div class="footer-grid-links reveal-scroll">
             <a href="tel:3335295659" class="footer-link">📞 333 5295659</a>
             <a href="mailto:alebazza08@gmail.com" class="footer-link">✉️ alebazza08@gmail.com</a>
         </div>
@@ -611,6 +708,29 @@
             }
         }
 
+        function togglePortfolioExpansion() {
+            const block = document.getElementById('extended-portfolio-block');
+            const label = document.getElementById('view-more-text-label');
+            const arrow = document.getElementById('view-more-icon-arrow');
+            const hiddenCards = document.querySelectorAll('.hidden-card');
+            
+            if (!block.classList.contains('open')) {
+                block.classList.add('open');
+                block.style.maxHeight = block.scrollHeight + "px";
+                label.innerText = "View Less";
+                arrow.style.transform = "rotate(180deg)";
+                
+                hiddenCards.forEach(card => {
+                    card.classList.add('reveal-scroll', 'active');
+                });
+            } else {
+                block.classList.remove('open');
+                block.style.maxHeight = "0";
+                label.innerText = "View More";
+                arrow.style.transform = "rotate(0deg)";
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof gsap !== 'undefined') {
                 const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1.1 } });
@@ -622,20 +742,6 @@
 
                 if (typeof ScrollTrigger !== 'undefined') {
                     gsap.registerPlugin(ScrollTrigger);
-                    
-                    gsap.to('.project-card', {
-                        scrollTrigger: {
-                            trigger: '#progetti',
-                            start: 'top 80%',
-                            toggleActions: 'play none none none'
-                        },
-                        x: 0,
-                        opacity: 1,
-                        stagger: 0.15,
-                        duration: 1.1,
-                        ease: 'power2.out'
-                    });
-
                     gsap.to('.process-section', {
                         scrollTrigger: {
                             trigger: '.process-section',
@@ -648,6 +754,22 @@
                     });
                 }
             }
+
+            // Sistema di Intersection Observer attivo
+            const revealElements = document.querySelectorAll(".reveal-scroll");
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -40px 0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
         });
     </script>
 </body>
