@@ -124,11 +124,11 @@
         }
 
         .hero-premium h1 {
-            font-size: 68px;
+            font-size: 56px;
             font-weight: 700;
-            letter-spacing: -2.5px;
-            line-height: 1.1;
-            margin-bottom: 20px;
+            letter-spacing: -2px;
+            line-height: 1.15;
+            margin-bottom: 22px;
             color: var(--text-primary);
         }
 
@@ -139,12 +139,12 @@
         }
 
         .hero-subtitle {
-            font-size: 20px;
+            font-size: 19px;
             color: var(--text-secondary);
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto 35px auto;
             font-weight: 400;
-            line-height: 1.45;
+            line-height: 1.5;
         }
 
         /* Scatola Contatti */
@@ -462,9 +462,8 @@
 
         /* Responsive Media Query */
         @media (max-width: 768px) {
-            .hero-premium h1 { font-size: 40px; letter-spacing: -1.5px; }
-            .hero-subtitle { font-size: 17px; }
-            /* Forza le card a restare 2 per riga riducendo il gap */
+            .hero-premium h1 { font-size: 34px; letter-spacing: -1.2px; }
+            .hero-subtitle { font-size: 16px; }
             .project-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 10px; }
             .project-card { height: 420px; padding: 15px; }
             .project-preview { height: 130px; }
@@ -496,18 +495,18 @@
     <section class="hero-premium">
         <div class="hero-content">
             <div class="announcement-badge">✦ Freelance Developer Pro</div>
-            <h1 class="reveal-text">Siti Web che Sembrano <span>Magia</span>, Generano Risultati.</h1>
-            <p class="hero-subtitle">Sono un freelance specialist in sviluppo d'élite moderno, fluido e ottimizzato al millisecondo. Nessun modello preimpostato, solo pura innovazione digitale.</p>
+            <h1 class="reveal-text">Quanti clienti stai perdendo perché non hai un sito <span>all'altezza</span>?</h1>
+            <p class="hero-subtitle">Creo siti web professionali che valorizzano la tua attività, aumentano la tua credibilità online e rendono più facile per i clienti scegliere te.</p>
             
             <div class="magic-box-premium">
-                <h3>Hai un'idea in mente ma zero tempo?</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 18px; font-size: 14px;">Non devi preoccuparti di codici, server o tecnicismi fastidiosi.</p>
-                <button id="main-magic-btn" class="btn-magic-trigger" onclick="openContactChannels()">Decidiamo insieme le tue idee &amp; faccio tutto io ↓</button>
+                <h3>Hai bisogno di un sito ma non sai da dove iniziare?</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 18px; font-size: 14px;">Non devi preoccuparti di codici o tecnicismi. Scegli come preferisci parlarne ↓</p>
+                <button id="main-magic-btn" class="btn-magic-trigger" onclick="openContactChannels()">Richiedi un preventivo gratuito</button>
                 
                 <div id="channels-container" class="contact-channels-grid">
-                    <a href="tel:3335295659" class="channel-card-premium">📞 Chiamata</a>
-                    <a href="https://wa.me/393335295659" target="_blank" class="channel-card-premium wa-color">💬 WhatsApp</a>
-                    <a href="mailto:alebazza08@gmail.com" class="channel-card-premium">✉️ Email</a>
+                    <a href="https://wa.me/393335295659" target="_blank" class="channel-card-premium wa-color">💬 Parliamone su WhatsApp</a>
+                    <a href="tel:3335295659" class="channel-card-premium">📞 Chiamata Diretta</a>
+                    <a href="mailto:alebazza08@gmail.com" class="channel-card-premium">✉️ Invia un'Email</a>
                 </div>
             </div>
         </div>
@@ -682,10 +681,11 @@
     <section class="footer-contacts" id="contatti">
         <h2 class="reveal-scroll">Diamo vita al tuo progetto</h2>
         <div class="footer-grid-links reveal-scroll">
-            <a href="tel:3335295659" class="footer-link">📞 333 5295659</a>
+            <a href="https://wa.me/393335295659" target="_blank" class="footer-link">💬 Parliamone su WhatsApp</a>
             <a href="mailto:alebazza08@gmail.com" class="footer-link">✉️ alebazza08@gmail.com</a>
         </div>
     </section>
+
 
     <footer>
         &copy; 2026 Alessandro Bazzani. Soluzioni Web d'Impatto Professionali.
@@ -701,10 +701,10 @@
             
             if (container.style.display === 'grid') {
                 container.style.display = 'none';
-                mainBtn.innerText = "Decidiamo insieme le tue idee & faccio tutto io ↓";
+                mainBtn.innerText = "Richiedi un preventivo gratuito";
             } else {
                 container.style.display = 'grid';
-                mainBtn.innerText = "Scegli come contattarmi:";
+                mainBtn.innerText = "Scegli l'opzione che preferisci:";
             }
         }
 
@@ -755,7 +755,6 @@
                 }
             }
 
-            // Sistema di Intersection Observer attivo
             const revealElements = document.querySelectorAll(".reveal-scroll");
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
