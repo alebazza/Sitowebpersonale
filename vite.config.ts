@@ -6,6 +6,9 @@ import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Relative asset paths so the site works on GitHub Pages both at the
+  // domain root (alebazza.github.io) and inside a project sub-path.
+  base: "./",
   plugins: [vlyPlugin(), react(), tailwindcss()],
   resolve: {
     alias: {

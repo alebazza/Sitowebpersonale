@@ -3,7 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
-const FONT_URL = "/fonts/helvetiker_bold.typeface.json";
+const FONT_URL = `${import.meta.env.BASE_URL}fonts/helvetiker_bold.typeface.json`;
 
 /* ------------------------------------------------------------------ */
 /* helpers                                                             */

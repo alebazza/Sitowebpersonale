@@ -1,9 +1,7 @@
 # Pubblica automaticamente il sito su GitHub Pages.
-# Ogni volta che fai "push" dei file sul repository principale
-# (alebazza.github.io), GitHub ricostruisce il sito e lo mette online da solo.
-#
-# Sui repository di sola copia (es. portfolio-src) questo file viene
-# semplicemente ignorato, quindi non succede nulla di strano.
+# Ogni volta che fai "push" dei file sul repository, GitHub ricostruisce
+# il sito e lo mette online da solo (serve che il repo abbia GitHub Pages
+# attivo con Source = "GitHub Actions", vedi Settings > Pages).
 
 name: Deploy to GitHub Pages
 
@@ -23,8 +21,6 @@ concurrency:
 
 jobs:
   build:
-    # Gira solo sul repository che è l'host del sito.
-    if: github.repository == 'alebazza/alebazza.github.io'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -53,7 +49,6 @@ jobs:
 
   deploy:
     needs: build
-    if: github.repository == 'alebazza/alebazza.github.io'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
